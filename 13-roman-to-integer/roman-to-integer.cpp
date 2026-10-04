@@ -1,43 +1,39 @@
 class Solution {
 public:
     int romanToInt(string s) {
-
-        int sum = 0;
-
-        for(int i=0; i<s.length(); i++) {
-
-            int curr;
-
-            if(s[i]=='I') curr=1;
-            else if(s[i]=='V') curr=5;
-            else if(s[i]=='X') curr=10;
-            else if(s[i]=='L') curr=50;
-            else if(s[i]=='C') curr=100;
-            else if(s[i]=='D') curr=500;
-            else curr=1000;
-
-            if(i+1 < s.length()) {
-
-                int next;
-
-                if(s[i+1]=='I') next=1;
-                else if(s[i+1]=='V') next=5;
-                else if(s[i+1]=='X') next=10;
-                else if(s[i+1]=='L') next=50;
-                else if(s[i+1]=='C') next=100;
-                else if(s[i+1]=='D') next=500;
-                else next=1000;
-
-                if(curr < next)
-                    sum -= curr;
-                else
-                    sum += curr;
-
-            } else {
-                sum += curr;
+        vector<int>ans;
+        for( int i=0;i<s.size();i++){
+            if(s[i]=='I'){
+                ans.push_back(1);
+            }
+            if(s[i]=='V'){
+                ans.push_back(5);
+            }
+            if(s[i]=='X'){
+                ans.push_back(10);
+            }
+            if(s[i]=='L'){
+                ans.push_back(50);
+            }
+            if(s[i]=='C'){
+                ans.push_back(100);
+            }
+            if(s[i]=='D'){
+                ans.push_back(500);
+            }
+            if(s[i]=='M'){
+                ans.push_back(1000);
             }
         }
-
+        int sum=0;
+        for(int i=0;i<ans.size();i++){
+           if(i + 1 < ans.size() && ans[i] < ans[i+1]) {
+        sum -= ans[i];
+    }
+    else {
+        sum += ans[i];
+    }
+        }
         return sum;
     }
 };
